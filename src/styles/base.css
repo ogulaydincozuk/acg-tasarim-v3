@@ -11,12 +11,16 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* iOS Safari taşan sabit/ekran dışı öğeler yüzünden sayfayı yana kaydırmasın (clip: sticky'yi bozmaz) */
+  overflow-x: hidden;
+  overflow-x: clip;
   scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);

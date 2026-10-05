@@ -182,16 +182,35 @@
     padding: var(--space-6) var(--space-4) var(--space-6);
   }
 
+  /* dar ekranda üç karo yan yana sığmaz: tek kartta bölmeli liste (etiket solda, sayı sağda) */
   .stats {
-    gap: var(--space-2);
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-radius: var(--radius-md);
+    background: rgb(252 252 251 / 0.07);
+    overflow: hidden;
   }
 
   .stat {
-    padding: var(--space-3);
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 12px var(--space-4);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .stat + .stat {
+    border-top: 1px solid rgb(252 252 251 / 0.1);
+  }
+
+  .value {
+    font-size: 1.375rem;
   }
 
   .label {
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
   }
 
   .cta {
