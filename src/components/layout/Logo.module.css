@@ -1,0 +1,25 @@
+.logo {
+  display: inline-flex;
+  flex: none;
+  justify-self: start;
+}
+
+/* Yükseklik tek yerden (--logo-h) ayarlanır; genişlik her zaman orijinal orana göre (auto) */
+.logo img {
+  width: auto;
+  height: 100%;
+}
+
+.lockup {
+  height: var(--logo-h, 58px);
+}
+
+.badge {
+  height: var(--logo-h, 84px);
+}
+
+@media (max-width: 1023px) {
+  .lockup {
+    height: var(--logo-h, 44px);
+  }
+}

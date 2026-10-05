@@ -1,0 +1,15 @@
+node_modules
+dist
+*.local
+.DS_Store
+
+# Yerel çalışma dosyaları — depoya ve canlıya gitmez
+# (rakip ekran görüntüleri, analiz raporu, ham logo dosyası)
+GENEL BENİM İŞİM/
+.claude/
+
+# İç planlama notları — herkese açık depoya gitmez
+siteye-eklenecekler.txt
+
+# Tasarım brief dosyası — herkese açık depoya gitmez
+PROMPT.txt

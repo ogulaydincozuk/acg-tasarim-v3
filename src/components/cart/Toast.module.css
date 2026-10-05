@@ -1,0 +1,116 @@
+.region {
+  position: fixed;
+  z-index: var(--z-toast);
+  top: calc(var(--header-h) + 16px);
+  right: var(--gutter);
+  pointer-events: none;
+}
+
+/* Yüzen hap kart */
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: min(440px, calc(100vw - 32px));
+  padding: 8px 10px 8px 8px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  animation: enter var(--dur-slow) var(--ease);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+
+.thumb {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 50%;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  padding-left: var(--space-1);
+}
+
+/* Görselsiz bildirimde metin hap köşenin içine girmesin */
+.text:first-child {
+  padding-left: var(--space-4);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.title svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  stroke-width: 3;
+}
+
+.title .info {
+  background: var(--color-well);
+  stroke-width: 2.4;
+}
+
+.name {
+  overflow: hidden;
+  padding-left: 28px;
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.close:hover {
+  background: var(--color-well);
+  color: var(--color-text);
+}
+
+.close svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 639px) {
+  /* Mobilde üstte: ürün sayfasındaki yapışkan satın alma barıyla çakışmasın */
+  .region {
+    top: calc(12px + env(safe-area-inset-top));
+    left: 12px;
+    right: 12px;
+  }
+
+  .toast {
+    width: 100%;
+  }
+}

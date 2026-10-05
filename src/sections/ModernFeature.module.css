@@ -1,0 +1,201 @@
+/* Graphite zeminli editoryal blok: görsel solda, metin sağda */
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  align-items: stretch;
+  gap: clamp(0.5rem, 0.2rem + 1vw, 1rem);
+  padding: clamp(0.5rem, 0.2rem + 0.8vw, 0.875rem);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* görsel panelin içinde, kendi yuvarlak köşesiyle */
+.media {
+  position: relative;
+  display: block;
+  min-height: 240px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* görsel kutuyu doldurur, yüksekliği içerik (metin) belirler */
+.img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.img img {
+  height: 100%;
+  transition: transform 900ms var(--ease);
+}
+
+.media:hover .img img {
+  transform: scale(1.03);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: clamp(1rem, 0.6rem + 1.4vw, 2rem) clamp(1.25rem, 0.6rem + 2.8vw, 3.5rem);
+}
+
+/* Eyebrow: koyu zeminde yarı saydam hap + Coral nokta */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 12px;
+  border-radius: var(--radius-full);
+  background: rgb(252 252 251 / 0.1);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  color: var(--color-on-dark);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+
+.title {
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--color-on-dark);
+}
+
+.muted {
+  color: var(--color-brand);
+}
+
+.text {
+  max-width: 46ch;
+  font-size: var(--fs-sm);
+  color: var(--color-on-dark-muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 10px var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgb(252 252 251 / 0.07);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.stat:hover {
+  background: rgb(252 252 251 / 0.13);
+}
+
+.value {
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.625rem);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur) var(--ease);
+}
+
+.label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-dark-muted);
+}
+
+.stat:hover .value {
+  color: var(--color-brand);
+}
+
+/* Koyu zeminde birincil bağlantı: Coral dolgu, hover'da Soft White */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 46px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.005em;
+  transition:
+    background-color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.cta:hover {
+  background: var(--color-bg);
+}
+
+.cta:hover svg {
+  transform: translateX(4px);
+}
+
+.cta:focus-visible,
+.stat:focus-visible {
+  outline-color: var(--color-bg);
+}
+
+@media (max-width: 1023px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .media {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 639px) {
+  .panel {
+    border-radius: 24px;
+  }
+
+  .copy {
+    padding: var(--space-6) var(--space-4) var(--space-6);
+  }
+
+  .stats {
+    gap: var(--space-2);
+  }
+
+  .stat {
+    padding: var(--space-3);
+  }
+
+  .label {
+    font-size: var(--fs-xs);
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

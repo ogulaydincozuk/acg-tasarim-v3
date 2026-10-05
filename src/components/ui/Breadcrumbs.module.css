@@ -1,0 +1,55 @@
+/* Sade yol: hap/zemin yok, küçük chevron ayırıcı, son öğe kalın */
+.root ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+.root li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.sep {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin: 0 6px;
+  color: var(--color-text-muted);
+}
+
+.root a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-weight: var(--fw-medium);
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 5px;
+  transition:
+    color var(--dur) var(--ease),
+    text-decoration-color var(--dur) var(--ease);
+}
+
+@media (pointer: coarse) {
+  .root a {
+    min-height: 44px;
+  }
+}
+
+.root a:hover {
+  color: var(--color-text);
+  text-decoration-color: var(--color-brand);
+}
+
+.root [aria-current] {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 48ch;
+}

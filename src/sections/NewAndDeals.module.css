@@ -1,0 +1,290 @@
+/* — Yeni gelenler: tek satır bento (vitrin karosu + 3 kart) — */
+.bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 3fr);
+  gap: clamp(0.75rem, 0.3rem + 1.2vw, 1.25rem);
+}
+
+.small {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 0.3rem + 1.2vw, 1.25rem);
+}
+
+/* Büyük vitrin karosu */
+.lead {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-well);
+  isolation: isolate;
+}
+
+.leadMedia {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.leadImg {
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.leadImg img {
+  height: 100%;
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform 1000ms var(--ease);
+}
+
+.lead:hover .leadImg img {
+  transform: scale(1.04);
+}
+
+.leadShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(41 40 39 / 0.78) 0%, rgb(41 40 39 / 0.3) 42%, transparent 66%);
+}
+
+.leadBody {
+  position: relative;
+  z-index: 1;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: clamp(1.25rem, 0.8rem + 1.6vw, 2rem);
+  color: var(--palette-white);
+  pointer-events: none;
+}
+
+.leadBody > * {
+  pointer-events: auto;
+}
+
+.leadChip {
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  color: var(--color-text);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+.leadName {
+  margin-top: var(--space-2);
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--palette-white);
+}
+
+.leadName a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-brand);
+}
+
+.leadInfo {
+  font-size: var(--fs-sm);
+  color: rgb(252 252 251 / 0.86);
+}
+
+.leadFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.leadPrice {
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1023px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .lead {
+    min-height: 420px;
+  }
+}
+
+/* mobil: kartlar yatay kayar */
+@media (max-width: 639px) {
+  .lead {
+    min-height: 400px;
+  }
+
+  .small {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 62%;
+    gap: 10px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .small::-webkit-scrollbar {
+    display: none;
+  }
+
+  .small > li {
+    scroll-snap-align: start;
+  }
+}
+
+/* — Kampanya paneli: Light Blush zemin + indirimli ürün kartları — */
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
+  padding: clamp(1.5rem, 0.8rem + 3vw, 4rem);
+  border-radius: var(--radius-xl);
+  background: var(--color-brand-soft);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.copy :global(.eyebrow) {
+  background: var(--color-surface);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.text {
+  max-width: 36ch;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+
+.deals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.625rem, 0.3rem + 1vw, 1rem);
+}
+
+.deal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 10px 10px 16px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition:
+    transform var(--dur-slow) var(--ease),
+    box-shadow var(--dur-slow) var(--ease);
+}
+
+.deal:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.dealImg {
+  margin-bottom: 8px;
+  border-radius: var(--radius-md);
+}
+
+.dealImg img {
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform 900ms var(--ease);
+}
+
+.deal:hover .dealImg img {
+  transform: scale(1.05);
+}
+
+.dealPct {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
+.dealName {
+  padding-inline: 6px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.deal > :last-child {
+  padding-inline: 6px;
+  margin-top: auto;
+}
+
+@media (max-width: 1023px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .panel {
+    padding: var(--space-6) var(--space-4) var(--space-4);
+    border-radius: 24px;
+  }
+
+  .copy {
+    padding-inline: var(--space-2);
+  }
+
+  /* kartlar yatay kayar */
+  .deals {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 62%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .deals::-webkit-scrollbar {
+    display: none;
+  }
+
+  .deals > li {
+    scroll-snap-align: start;
+  }
+}

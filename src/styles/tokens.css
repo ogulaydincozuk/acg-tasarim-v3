@@ -1,0 +1,188 @@
+/* ==========================================================================
+   ACG TASARIM — Design tokens
+   --------------------------------------------------------------------------
+   Varyasyon 3 — aktif tema: Palet 3 · ACG Modern (varsayılan).
+   Palet 1 (Soft Premium) ve Palet 2 (Ivory & Blush) korunur. Değiştirmek için
+   index.html içindeki <html data-theme="acg-modern"> değerini
+   "soft-premium" veya "ivory-blush" yapmak yeterlidir.
+   Bileşenler yalnızca semantik tokenları kullanır.
+   ========================================================================== */
+
+/* AKTİF — Palet 3 · ACG Modern (varsayılan) */
+:root,
+[data-theme='acg-modern'] {
+  --palette-bg: #fcfcfb; /* Soft White · ana zemin */
+  --palette-brand: #efa99d; /* ACG Coral · hover / aktif / küçük vurgu */
+  --palette-brand-soft: #f8d8d2; /* Light Blush · yüzeyler */
+  --palette-taupe: #77716d; /* Warm Gray · ikincil metin */
+  --palette-charcoal: #292827; /* Graphite · ana metin, utility bar */
+  --palette-gold: #d0a85c; /* Muted Gold · yalnızca ince çizgi / nokta */
+  --palette-white: #ffffff;
+  --palette-nav: #514943; /* kategori rail'inin sakin metin rengi */
+}
+
+/* Palet 2 · Ivory & Blush */
+[data-theme='ivory-blush'] {
+  --palette-bg: #f7f3ee;
+  --palette-brand: #dfa7a0;
+  --palette-brand-soft: #efd5cf; /* dusty blush'un açık tonu · yalnızca ince yüzeyler */
+  --palette-taupe: #a88984;
+  --palette-charcoal: #514943;
+  --palette-gold: #c7a86b;
+  --palette-white: #ffffff;
+  --palette-nav: #514943;
+}
+
+[data-theme='soft-premium'] {
+  /* Palet 1 · Soft Premium */
+  --palette-bg: #faf9f7; /* kırık beyaz · ana zemin (~%70) */
+  --palette-brand: #f3b8af; /* pudra · marka (~%15) */
+  --palette-brand-soft: #f7d3c8; /* soft peach · yüzey */
+  --palette-taupe: #8c8179; /* sıcak taupe · ikincil metin (~%4) */
+  --palette-charcoal: #30302e; /* charcoal · ana metin (~%10) */
+  --palette-gold: #c9a24d; /* sıcak altın · yalnızca küçük vurgular (~%1) */
+  --palette-white: #ffffff;
+  --palette-nav: #514943;
+}
+
+:root {
+  /* — Semantik renkler (bileşenler sadece bunları kullanır) — */
+  --color-bg: var(--palette-bg);
+  --color-surface: var(--palette-white);
+  --color-brand: var(--palette-brand);
+  --color-brand-soft: var(--palette-brand-soft);
+  --color-text: var(--palette-charcoal);
+  --color-text-muted: var(--palette-taupe);
+  --color-gold: var(--palette-gold);
+  --color-nav: var(--palette-nav);
+  /* Yılbaşı Özel yazısı: sezonluk, yalnızca bu başlıklarda kullanılan sakin yılbaşı kırmızısı */
+  --color-xmas-red: #b3342f;
+  /* Dusty blush'un metin/hover için bir ton koyusu (nav hover, bağlantı vurgusu) */
+  --color-brand-ink: color-mix(in srgb, var(--palette-brand) 72%, var(--palette-charcoal));
+
+  /* Küçük metinlerde AA kontrastı (≥4.5:1) için taupe'un bir ton koyusu */
+  --color-text-secondary: color-mix(in srgb, var(--palette-taupe) 75%, var(--palette-charcoal));
+  --color-on-dark: var(--palette-bg);
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-bg) 62%, var(--palette-charcoal));
+
+  /* Türetilmiş yüzeyler */
+  --color-brand-tint: color-mix(in srgb, var(--palette-brand-soft) 38%, var(--palette-bg));
+  --color-brand-wash: color-mix(in srgb, var(--palette-brand-soft) 18%, var(--palette-bg));
+  --color-well: color-mix(in srgb, var(--palette-taupe) 9%, var(--palette-bg)); /* görsel zemini */
+  --color-line: color-mix(in srgb, var(--palette-taupe) 20%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-taupe) 42%, transparent);
+  --color-text-hover: color-mix(in srgb, var(--palette-charcoal) 86%, var(--palette-white));
+  --color-overlay: color-mix(in srgb, var(--palette-charcoal) 42%, transparent);
+  --color-focus: var(--palette-charcoal);
+
+  /* — Tipografi — */
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
+
+  --fs-display: clamp(2.5rem, 1.5rem + 3.6vw, 4.5rem);
+  --fs-h1: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --fs-h2: clamp(1.625rem, 1.3rem + 1.3vw, 2.5rem);
+  --fs-h3: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --fs-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78125rem;
+  --fs-2xs: 0.6875rem;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-heading: 650; /* V3: kalın, sıkı başlıklar */
+
+  --lh-tight: 1.04;
+  --lh-heading: 1.12;
+  --lh-body: 1.6;
+  --tracking-tight: -0.035em;
+  --tracking-eyebrow: 0.06em;
+  --tracking-label: 0.02em;
+
+  /* — Boşluk (4px tabanlı) — */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-section: clamp(3rem, 2rem + 3.6vw, 5.75rem);
+
+  /* — Layout — */
+  --container: 1400px;
+  --gutter: clamp(1rem, 0.5rem + 2.2vw, 2.5rem);
+  /* Header (V3): üç katman + kaydırınca compact dock.
+     --header-h = compact dock yüksekliği; sticky öğeler bunun altına yaslanır. */
+  --header-h: 60px;
+  --utility-h: 32px;
+  --brand-h: 100px;
+  --rail-h: 46px;
+  /* Yapışkan yan paneller bu değerin altına yaslanır; dock rail'le genişleyince değer büyür (bkz. aşağıda) */
+  --stick-top: var(--header-h);
+
+  /* — Radius (V3: yumuşak, büyük yuvarlak köşeler; butonlar hap biçimli) — */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+
+  /* — Gölge (graphite tonlu, çok hafif) — */
+  --shadow-xs: 0 1px 2px rgb(41 40 39 / 0.06);
+  --shadow-sm: 0 6px 18px -8px rgb(41 40 39 / 0.16);
+  --shadow-md: 0 18px 40px -20px rgb(41 40 39 / 0.22);
+  --shadow-lg: 0 32px 64px -28px rgb(41 40 39 / 0.3);
+
+  /* — Hareket (minimum) — */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 360ms;
+
+  --z-header: 50;
+  --z-mega: 55;
+  --z-overlay: 80;
+  --z-drawer: 90;
+  --z-toast: 100;
+}
+
+/* Ivory & Blush: Rose Taupe (#A88984) küçük metinde AA kontrastını karşılamaz;
+   ikincil metin için Deep Taupe'a doğru bir ton koyulaştırılır. Rose Taupe'un
+   kendisi çizgi, ikon ve büyük detaylarda (--color-text-muted) kalır. */
+[data-theme='ivory-blush'] {
+  --color-text-secondary: color-mix(in srgb, var(--palette-taupe) 52%, var(--palette-charcoal));
+  --color-well: color-mix(in srgb, var(--palette-taupe) 7%, var(--palette-bg));
+  --color-line: color-mix(in srgb, var(--palette-taupe) 24%, transparent);
+  --color-brand-wash: color-mix(in srgb, var(--palette-brand) 14%, var(--palette-bg));
+  --color-brand-tint: color-mix(in srgb, var(--palette-brand) 26%, var(--palette-bg));
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-h: 54px;
+    --utility-h: 28px;
+    --brand-h: 66px;
+    --rail-h: 40px;
+  }
+}
+
+/* Yukarı kaydırırken dock'un altına kategori rail'i açılır; yapışkan paneller de onun altına kayar */
+html[data-header-expanded] {
+  --stick-top: calc(var(--header-h) + var(--rail-h));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}

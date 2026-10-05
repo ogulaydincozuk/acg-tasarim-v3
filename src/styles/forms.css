@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Formlar — ödeme, üyelik ve hesap sayfalarında ortak kullanılır
+   ========================================================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > label,
+.field-label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.input {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  /* iOS'ta odakta yakınlaştırmayı önlemek için 16px */
+  font-size: 1rem;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+textarea.input {
+  height: auto;
+  min-height: 104px;
+  padding: 14px 18px;
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--color-text-secondary) 70%, transparent);
+}
+
+.input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-text);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 45%, transparent);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--color-xmas-red);
+}
+
+.field-error {
+  font-size: var(--fs-xs);
+  color: var(--color-xmas-red);
+}
+
+.field-hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.form-grid .span-2 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 639px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.check input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--color-text);
+}
+
+.check a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-strong);
+  text-underline-offset: 3px;
+}
+
+/* DEMO etiketi: küçük altın tonlu hap */
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-gold) 28%, var(--color-bg));
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* DEMO bilgi kutusu */
+.demo-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.demo-note .demo-badge {
+  margin-top: 1px;
+}
+
+.form-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-xmas-red) 9%, var(--color-surface));
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}

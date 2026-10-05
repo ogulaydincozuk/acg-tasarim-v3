@@ -1,0 +1,80 @@
+/* Hap biçimli adet seçici: sıcak gri zemin + iki dairesel düğme */
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 52px;
+  padding: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+}
+
+.root button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-xs);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.root button:hover:not(:disabled) {
+  background: var(--color-text);
+  color: var(--color-surface);
+}
+
+.root button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.root button:focus-visible {
+  border-radius: 50%;
+}
+
+.root button:disabled {
+  background: transparent;
+  box-shadow: none;
+  color: var(--color-text-secondary);
+  opacity: 0.45;
+}
+
+.root button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.value {
+  flex: 1 1 auto;
+  min-width: 36px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sm {
+  height: 40px;
+  padding: 3px;
+}
+
+.sm button {
+  width: 34px;
+  height: auto;
+  aspect-ratio: 1; /* bağlam genişliği değiştirse de daire kalsın */
+}
+
+.sm button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sm .value {
+  min-width: 28px;
+  font-size: var(--fs-sm);
+}

@@ -1,0 +1,187 @@
+/* Sıfır yükseklikli çapa: panel, bulunduğu katmanın (marka satırı / dock) hemen altından açılır */
+.anchor {
+  position: relative;
+  height: 0;
+  z-index: 3;
+}
+
+.panel {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  width: min(calc(100% - var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur-slow) var(--ease),
+    visibility 0s linear var(--dur-slow);
+}
+
+.open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.35fr);
+  gap: clamp(2rem, 0.6rem + 3.4vw, 4.5rem);
+  padding: clamp(1.75rem, 1rem + 2vw, 3rem) clamp(1.75rem, 1rem + 2.5vw, 3.5rem);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.colTitle {
+  align-self: flex-start;
+  padding-bottom: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+a.colTitle:hover {
+  color: var(--color-brand-ink);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  margin-left: -14px;
+  border-radius: var(--radius-full);
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  transition:
+    color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.link svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.link:hover {
+  background: var(--color-brand-tint);
+  color: var(--color-text);
+}
+
+.link:hover svg {
+  opacity: 1;
+  transform: none;
+}
+
+/* — Vitrin kartı — */
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding-left: clamp(1.5rem, 0.4rem + 2.4vw, 3rem);
+  border-left: 1px solid var(--color-line);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.cardImg {
+  border-radius: var(--radius-md);
+  background: var(--color-well);
+  border-radius: var(--radius-md);
+}
+
+.cardImg img {
+  transition: transform 700ms var(--ease);
+}
+
+.card:hover .cardImg img {
+  transform: scale(1.04);
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.cardName {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  transition: color var(--dur) var(--ease);
+}
+
+.card:hover .cardName {
+  color: var(--color-brand-ink);
+}
+
+.cardMeta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+.cardPrice {
+  margin-top: 2px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.moreLink svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-brand);
+  transition: transform var(--dur) var(--ease);
+}
+
+.moreLink:hover svg {
+  transform: translateX(4px);
+}
+
+/* Mega menü yalnızca masaüstünde; mobilde sol çekmece kullanılır */
+@media (max-width: 1023px) {
+  .anchor {
+    display: none;
+  }
+}

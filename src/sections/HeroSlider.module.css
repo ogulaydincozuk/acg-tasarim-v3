@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Hero slider — yuvarlak köşeli büyük banner, solda degrade üstünde başlık
+   ========================================================================== */
+.hero {
+  padding-block: clamp(0.75rem, 0.4rem + 1.2vw, 1.5rem) 0;
+}
+
+.stage {
+  position: relative;
+  margin-bottom: 14px;
+  touch-action: pan-y;
+}
+
+/* Banner'ın altında görünen yumuşak "sonraki kart" şeridi */
+.stage::after {
+  content: '';
+  position: absolute;
+  left: clamp(1rem, 3vw, 2.5rem);
+  right: clamp(1rem, 3vw, 2.5rem);
+  bottom: -12px;
+  height: 36px;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: var(--color-brand-soft);
+  opacity: 0.75;
+}
+
+.frame {
+  position: relative;
+  z-index: 1;
+  height: clamp(440px, 20rem + 10vw, 560px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-text);
+  isolation: isolate;
+}
+
+.slides {
+  display: grid;
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 700ms var(--ease),
+    visibility 0s linear 700ms;
+}
+
+.active {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImg {
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.bgImg img {
+  height: 100%;
+}
+
+.active .bgImg {
+  animation: settle 7s var(--ease) both;
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+}
+
+/* Koyu degrade: başlık her görselde okunur */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(41 40 39 / 0.9) 0%,
+    rgb(41 40 39 / 0.72) 36%,
+    rgb(41 40 39 / 0.26) 62%,
+    transparent 84%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-5);
+  max-width: 880px;
+  height: 100%;
+  padding-inline: clamp(1.5rem, 0.8rem + 5vw, 6rem);
+  color: var(--palette-white);
+}
+
+.active .content > * {
+  animation: rise 800ms var(--ease) both;
+}
+
+.active .content > :nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.active .content > :nth-child(3) {
+  animation-delay: 150ms;
+}
+
+.active .content > :nth-child(4) {
+  animation-delay: 220ms;
+}
+
+.active .content > :nth-child(5) {
+  animation-delay: 280ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid rgb(252 252 251 / 0.28);
+  border-radius: var(--radius-full);
+  background: rgb(252 252 251 / 0.14);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+.title {
+  font-size: clamp(2rem, 1.1rem + 2.7vw, 3.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  color: var(--palette-white);
+  text-wrap: balance;
+}
+
+.text {
+  max-width: 46ch;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+  line-height: 1.55;
+  color: rgb(252 252 251 / 0.9);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* Koyu görsel üstünde cam görünümlü ikincil hap */
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  border: 1px solid rgb(252 252 251 / 0.4);
+  border-radius: var(--radius-full);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-semibold);
+  color: var(--palette-white);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.ghost:hover {
+  background: rgb(252 252 251 / 0.16);
+  border-color: rgb(252 252 251 / 0.7);
+}
+
+.ghost:focus-visible,
+.arrow:focus-visible {
+  outline-color: var(--palette-white);
+}
+
+.meta {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: rgb(252 252 251 / 0.78);
+}
+
+/* — Oklar: yalnızca üzerine gelince — */
+.arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transition:
+    opacity var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+.frame:hover .arrow,
+.arrow:focus-visible {
+  opacity: 1;
+}
+
+.arrow:hover {
+  background: var(--color-brand);
+  transform: scale(1.06);
+}
+
+/* — Sayfalama: küçük noktalar, aktif olan uzun hap ve ilerleme dolgusu — */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: 28px;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+}
+
+.dotBtn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  transition: width var(--dur-slow) var(--ease);
+}
+
+.dotBtn[aria-current='true'] {
+  width: 52px;
+}
+
+.dot {
+  position: relative;
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  overflow: hidden;
+  transition:
+    width var(--dur-slow) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.dotBtn:hover .dot {
+  background: var(--color-brand);
+}
+
+.dotBtn[aria-current='true'] .dot {
+  width: 40px;
+  background: color-mix(in srgb, var(--color-brand) 32%, var(--color-bg));
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-brand);
+}
+
+/* Otomatik geçiş çalışırken dolgu süre boyunca ilerler */
+.filling {
+  transform-origin: left;
+  animation: progress 6500ms linear both;
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.pause {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-text);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.pause svg {
+  width: 14px;
+  height: 14px;
+}
+
+.pause:hover {
+  background: var(--color-surface);
+  border-color: var(--color-text);
+}
+
+/* — Tablet & mobil — */
+@media (max-width: 1023px) {
+  .frame {
+    height: clamp(460px, 380px + 12vw, 520px);
+  }
+
+  .shade {
+    background: linear-gradient(
+      0deg,
+      rgb(41 40 39 / 0.86) 0%,
+      rgb(41 40 39 / 0.58) 46%,
+      rgb(41 40 39 / 0.12) 78%,
+      transparent 100%
+    );
+  }
+
+  .content {
+    justify-content: flex-end;
+    max-width: none;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem) clamp(1.75rem, 5vw, 2.75rem);
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .frame {
+    height: 520px;
+    border-radius: 24px;
+  }
+
+  .stage::after {
+    border-radius: 0 0 24px 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .ctas {
+    width: 100%;
+  }
+
+  .ctas :global(.btn),
+  .ghost {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .controls {
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .dot,
+  .dotBtn {
+    transition: none;
+  }
+
+  .active .bgImg,
+  .active .content > *,
+  .filling {
+    animation: none;
+  }
+}

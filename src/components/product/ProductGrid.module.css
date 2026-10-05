@@ -1,0 +1,118 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 0.3rem + 1.2vw, 1.25rem);
+}
+
+.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .grid,
+  .three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+/* — Rail: yatay kaydırmalı ürün şeridi — */
+.rail {
+  position: relative;
+  container-type: inline-size;
+}
+
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 3 * 20px) / 4);
+  gap: 20px;
+  padding-block: 6px 18px; /* hover gölgesi kırpılmasın */
+  margin-block: -6px -18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: 0;
+}
+
+.slide {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.nav {
+  position: absolute;
+  /* görsel kutusunun (4:5) dikey ortası: kart dolgusu 10px */
+  top: calc(10px + ((100cqw - 60px) / 4 - 20px) * 1.25 / 2 - 24px);
+  left: -24px;
+  right: -24px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.nav button {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.nav button:hover:not(:disabled) {
+  background: var(--color-brand);
+  transform: scale(1.06);
+}
+
+.nav button:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 1279px) {
+  .nav {
+    left: -12px;
+    right: -12px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .track {
+    grid-auto-columns: calc((100% - 2 * 12px) / 2.6);
+    gap: 12px;
+    /* taşan kartlar ekran kenarına kadar uzansın */
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .track {
+    grid-auto-columns: 62%;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,96 @@
+.nav {
+  min-width: 0;
+}
+
+/* Sığarsa ortalanır, sığmazsa kendi içinde yatay kayar */
+.list {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  gap: clamp(1.25rem, -0.9rem + 3vw, 2.75rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--rail-h);
+  font-size: 0.71875rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-nav);
+  transition: color var(--dur) var(--ease);
+}
+
+/* hover: Coral ince çizgi soldan uzar; aktif: Muted Gold çizgi kalıcı */
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0.13em;
+  bottom: calc(var(--rail-h) / 2 - 15px);
+  height: 1px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.active {
+  color: var(--color-text);
+}
+
+.active::after {
+  background: var(--color-gold);
+  transform: scaleX(1);
+}
+
+/* Vurgulu öğeler (Yılbaşı, Kampanyalar): yalnızca küçük Coral nokta */
+.accent::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+
+/* Mobil: kenara kadar uzanan şerit, kenarlarda yumuşak solma */
+@media (max-width: 1023px) {
+  .nav {
+    margin-inline: calc(var(--gutter) * -1);
+  }
+
+  .list {
+    width: auto;
+    max-width: none;
+    padding-inline: var(--gutter);
+    gap: 1.625rem;
+    scroll-snap-type: x proximity;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+  }
+
+  .list > li {
+    scroll-snap-align: center;
+  }
+
+  .link {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+  }
+}

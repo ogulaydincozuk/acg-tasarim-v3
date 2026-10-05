@@ -1,0 +1,97 @@
+/* — Utility bar: Graphite zemin, Soft White yazı, Coral yalnızca nokta ve hover — */
+.bar {
+  background: var(--color-text);
+  color: color-mix(in srgb, var(--palette-bg) 84%, transparent);
+  font-size: 0.71875rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.02em;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  height: var(--utility-h);
+}
+
+.lead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tagline::before {
+  content: '';
+  flex: none;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+
+.note {
+  padding-left: var(--space-4);
+  border-left: 1px solid color-mix(in srgb, var(--palette-bg) 22%, transparent);
+  white-space: nowrap;
+  opacity: 0.72;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  height: var(--utility-h);
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.links a:hover {
+  color: var(--color-brand);
+}
+
+.links a:focus-visible {
+  outline-color: var(--palette-bg);
+  outline-offset: -3px;
+}
+
+.account {
+  padding-left: var(--space-6);
+  border-left: 1px solid color-mix(in srgb, var(--palette-bg) 22%, transparent);
+}
+
+@media (max-width: 1099px) {
+  .note {
+    display: none;
+  }
+}
+
+/* Mobil: yalnızca marka cümlesi, ortalı */
+@media (max-width: 1023px) {
+  .inner {
+    justify-content: center;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .tagline {
+    font-size: 0.6875rem;
+  }
+}

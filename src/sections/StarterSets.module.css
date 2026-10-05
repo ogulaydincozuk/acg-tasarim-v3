@@ -1,0 +1,258 @@
+/* Büyük Light Blush panel: solda sekmeler, sağda seçili set */
+.panel {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.7fr) minmax(0, 2.3fr);
+  gap: clamp(0.75rem, 0.4rem + 1.2vw, 1.5rem);
+  padding: clamp(0.75rem, 0.4rem + 1.2vw, 1.5rem);
+  border-radius: var(--radius-xl);
+  background: var(--color-brand-tint);
+}
+
+/* — Sekmeler — */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: start;
+}
+
+.tab {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 8px 14px 8px 8px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-surface) 56%, transparent);
+  text-align: left;
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.tab:hover {
+  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+}
+
+.tabImg {
+  border-radius: var(--radius-md);
+}
+
+.tabText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tabName {
+  font-size: 0.9375rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.015em;
+}
+
+.tabMeta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+.tabArrow {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.tabActive,
+.tabActive:hover {
+  background: var(--color-text);
+  color: var(--palette-white);
+}
+
+.tabActive .tabMeta {
+  color: var(--color-on-dark-muted);
+}
+
+.tabActive .tabArrow {
+  opacity: 1;
+  transform: none;
+  color: var(--color-brand);
+}
+
+.tabActive:focus-visible {
+  outline-color: var(--color-text);
+}
+
+/* — Seçili set — */
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  padding: clamp(0.75rem, 0.4rem + 1vw, 1.25rem);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  min-width: 0;
+}
+
+.photo {
+  position: relative;
+  display: block;
+  align-self: start;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-well);
+}
+
+.photoImg {
+  animation: swap 500ms var(--ease) both;
+}
+
+@keyframes swap {
+  from {
+    opacity: 0.4;
+    transform: scale(1.03);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: clamp(0.25rem, 0.1rem + 1vw, 1rem) clamp(0rem, 1vw, 1rem) clamp(0.25rem, 0.1rem + 1vw, 1rem) 0;
+}
+
+.meta {
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+.name {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  color: var(--color-text-secondary);
+}
+
+.contents {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+  width: 100%;
+  padding-block: var(--space-4);
+  border-block: 1px solid var(--color-line);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.contents li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.contents svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+  color: var(--color-text);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  width: 100%;
+  margin-top: auto;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* — Tablet & mobil: sekmeler yatay kayan hapa dönüşür — */
+@media (max-width: 1023px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    flex-direction: row;
+    gap: 8px;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: none;
+    width: auto;
+    grid-template-columns: 44px auto;
+    gap: 10px;
+    padding: 6px 18px 6px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .tabImg {
+    border-radius: 50%;
+  }
+
+  .tabArrow {
+    display: none;
+  }
+
+  .tabMeta {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    padding: 0 var(--space-2) var(--space-2);
+  }
+
+  .contents {
+    grid-template-columns: 1fr;
+  }
+
+  .actions,
+  .actions :global(.btn) {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoImg {
+    animation: none;
+  }
+}

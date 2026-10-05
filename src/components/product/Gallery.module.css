@@ -1,0 +1,146 @@
+/* Masaüstü: sol dikey küçük resim şeridi + büyük yuvarlak sahne */
+.gallery {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px; /* aktif halka kırpılmasın */
+  margin: -4px;
+}
+
+.thumb {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-well);
+  opacity: 0.6;
+  transition:
+    opacity var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.thumb:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.thumb:focus-visible {
+  border-radius: var(--radius-md);
+}
+
+/* Aktif küçük resim: Graphite halka (araya boşluk bırakır) */
+.thumbActive {
+  opacity: 1;
+  box-shadow:
+    0 0 0 2px var(--color-bg),
+    0 0 0 4px var(--color-text);
+}
+
+.stage {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-well);
+}
+
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+.track:focus-visible {
+  outline-offset: -4px;
+  border-radius: var(--radius-xl);
+}
+
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+  .stage:hover .slide img {
+    transform: scale(1.03);
+  }
+}
+
+/* Mobil/tablet sayfalama: hap içinde nokta çubuğu */
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-text) 38%, transparent);
+  backdrop-filter: blur(8px);
+  transform: translateX(-50%);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  transition:
+    width var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.dotActive {
+  width: 20px;
+  background: var(--color-surface);
+}
+
+.counter {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  backdrop-filter: blur(8px);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1023px) {
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .thumbs {
+    display: none;
+  }
+
+  .dots {
+    display: flex;
+  }
+
+  .counter {
+    display: block;
+  }
+}
+
+@media (max-width: 639px) {
+  .stage {
+    border-radius: var(--radius-lg);
+  }
+
+  .track:focus-visible {
+    border-radius: var(--radius-lg);
+  }
+}

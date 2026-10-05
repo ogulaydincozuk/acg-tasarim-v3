@@ -1,0 +1,279 @@
+/* V3 ürün kartı: yuvarlak beyaz kart, içinde yuvarlak görsel kutusu */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition:
+    transform var(--dur-slow) var(--ease),
+    box-shadow var(--dur-slow) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.media {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-well);
+  isolation: isolate;
+}
+
+.mediaLink {
+  display: block;
+}
+
+.img,
+.imgAlt {
+  width: 100%;
+}
+
+.img img {
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform 900ms var(--ease);
+}
+
+.imgAlt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+.badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  pointer-events: none;
+}
+
+/* Favori: yüzen dairesel düğme */
+.fav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  box-shadow: var(--shadow-xs);
+  transition:
+    background-color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.fav svg {
+  width: 18px;
+  height: 18px;
+  transition: fill var(--dur) var(--ease);
+}
+
+.fav:hover {
+  background: var(--color-surface);
+  transform: scale(1.06);
+}
+
+.fav:active {
+  transform: scale(0.92);
+}
+
+.favActive svg {
+  fill: var(--color-brand);
+  stroke: var(--color-brand-ink);
+}
+
+/* Hızlı bak: hover'da alttan beliren hap */
+.view {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur-slow) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.view svg {
+  width: 16px;
+  height: 16px;
+}
+
+.view:hover {
+  background: var(--color-brand);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  padding: 14px 6px 4px;
+}
+
+.name {
+  font-size: 0.9375rem;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.name a {
+  transition: color var(--dur) var(--ease);
+}
+
+.name a:hover {
+  color: var(--color-brand-ink);
+}
+
+.info {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+.low {
+  color: var(--color-text);
+  font-weight: var(--fw-semibold);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* Sepete ekle: fiyatın yanında dairesel Graphite düğme */
+.add {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: var(--palette-white);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.add svg {
+  width: 18px;
+  height: 18px;
+}
+
+.add:hover {
+  background: var(--color-brand);
+  color: var(--color-text);
+}
+
+.add:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow-md);
+  }
+
+  .card:hover .img img {
+    transform: scale(1.05);
+  }
+
+  .card:hover .imgAlt {
+    opacity: 1;
+  }
+
+  .card:hover .view,
+  .view:focus-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Dokunmatik: "Hızlı bak" gizli (kart zaten ürün sayfasına gider) */
+@media (hover: none), (pointer: coarse) {
+  .view {
+    display: none;
+  }
+}
+
+/* Klavye kullanıcıları için hover olmadan da görünür */
+.card:focus-within .view {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.soldOut .img img {
+  filter: grayscale(0.35);
+  opacity: 0.75;
+}
+
+@media (max-width: 639px) {
+  .card {
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .fav {
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .badges {
+    top: 8px;
+    left: 8px;
+  }
+
+  .badge {
+    height: 24px;
+  }
+
+  .body {
+    padding: 12px 4px 2px;
+    gap: 3px;
+  }
+
+  .name {
+    font-size: var(--fs-sm);
+  }
+
+  .add {
+    width: 36px;
+    height: 36px;
+  }
+}

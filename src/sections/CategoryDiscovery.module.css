@@ -1,0 +1,171 @@
+/* Bento: 4 kolon × 2 satır. Mum 2×2 · Kokulu Taş · Boyama · Dekorasyon (2 kolon geniş) */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, clamp(210px, 17vw, 270px));
+  gap: clamp(0.625rem, 0.3rem + 1vw, 1rem);
+}
+
+.cell {
+  min-width: 0;
+}
+
+.cell0 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.cell1 {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.cell2 {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+.cell3 {
+  grid-column: 3 / 5;
+  grid-row: 2;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-well);
+  isolation: isolate;
+}
+
+.img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.img img {
+  height: 100%;
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform 1000ms var(--ease);
+}
+
+.tile:hover .img img {
+  transform: scale(1.06);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(41 40 39 / 0.72) 0%, rgb(41 40 39 / 0.22) 48%, transparent 72%);
+}
+
+.label {
+  position: absolute;
+  left: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
+  right: 1rem;
+  bottom: clamp(1rem, 0.6rem + 1.2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--palette-white);
+}
+
+.name {
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.cell0 .name {
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem);
+}
+
+.hint {
+  font-size: var(--fs-sm);
+  color: rgb(252 252 251 / 0.86);
+}
+
+/* Sağ üstte dairesel ok; hover'da Coral */
+.go {
+  position: absolute;
+  top: clamp(0.75rem, 0.5rem + 0.8vw, 1.25rem);
+  right: clamp(0.75rem, 0.5rem + 0.8vw, 1.25rem);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition:
+    background-color var(--dur) var(--ease),
+    transform var(--dur-slow) var(--ease);
+}
+
+.go svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tile:hover .go {
+  background: var(--color-brand);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 1023px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: clamp(170px, 30vw, 240px);
+  }
+
+  .cell0 {
+    grid-column: 1 / 3;
+    grid-row: auto;
+    grid-row-end: span 2;
+  }
+
+  .cell1,
+  .cell2 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .cell3 {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .bento {
+    grid-auto-rows: 168px;
+  }
+
+  .cell0 {
+    grid-row-end: span 2;
+  }
+
+  .cell0 .name {
+    font-size: 1.75rem;
+  }
+
+  .label {
+    right: 1rem;
+  }
+
+  .go {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hint {
+    font-size: var(--fs-xs);
+  }
+}

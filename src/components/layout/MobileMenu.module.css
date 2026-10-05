@@ -1,0 +1,206 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-4) var(--space-6);
+}
+
+/* Arama: hap kutu */
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 54px;
+  padding: 0 var(--space-5) 0 var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  text-align: left;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.search:hover {
+  border-color: var(--color-text);
+}
+
+.search svg {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+/* Kategoriler: yuvarlak kart satırları */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 62px;
+  padding: 0 var(--space-3) 0 var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  font-size: 1.25rem;
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--tracking-tight);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.row:hover {
+  border-color: var(--color-text);
+  background: var(--color-brand-tint);
+}
+
+.rowAccent {
+  border-color: transparent;
+  background: var(--color-brand-soft);
+}
+
+.rowAccent:hover {
+  background: var(--color-brand);
+}
+
+.rowLabel {
+  min-width: 0;
+}
+
+.rowArrow {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 11px;
+  border-radius: 50%;
+  background: var(--color-well);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.rowAccent .rowArrow {
+  background: var(--color-surface);
+}
+
+.row:hover .rowArrow {
+  background: var(--color-text);
+  color: var(--color-on-dark);
+  transform: translateX(2px);
+}
+
+/* Hesap / favori / sipariş: hap butonlar */
+.account {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.account li {
+  flex: 1 1 auto;
+}
+
+.account .accountMain {
+  flex-basis: 100%;
+}
+
+.account a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.account a:hover {
+  border-color: var(--color-text);
+}
+
+.accountMain a {
+  border-color: transparent;
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+.accountMain a:hover {
+  background: var(--color-brand);
+  color: var(--color-text);
+}
+
+.account svg {
+  width: 18px;
+  height: 18px;
+}
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Yardımcı bağlantılar: küçük hap çipler */
+.utility {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.utility a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.utility a:hover {
+  background: var(--color-brand-soft);
+  color: var(--color-text);
+}
+
+.contact {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-wash);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}

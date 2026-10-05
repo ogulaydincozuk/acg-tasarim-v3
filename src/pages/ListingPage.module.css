@@ -1,0 +1,821 @@
+.page {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-section);
+}
+
+/* — Başlık paneli (bento banner) — */
+.head {
+  --head-pad: clamp(1.25rem, 0.75rem + 2.4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-2) 0 var(--space-8);
+  padding: var(--head-pad);
+  border-radius: var(--radius-xl);
+  background: var(--color-brand-tint);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+}
+
+.total {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.desc {
+  max-width: 62ch;
+  font-size: var(--fs-lg);
+  color: var(--color-text-secondary);
+}
+
+.searchForm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 560px;
+  margin-top: var(--space-2);
+}
+
+.searchForm > svg {
+  position: absolute;
+  left: 20px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.searchForm input {
+  flex: 1;
+  min-width: 0;
+  height: 54px;
+  padding: 0 112px 0 48px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-size: 1rem;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.searchForm input:focus {
+  border-color: var(--color-text);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 45%, transparent);
+}
+
+.searchForm :global(.btn) {
+  position: absolute;
+  right: 7px;
+}
+
+/* — Hızlı geçiş çipleri — */
+.quick {
+  margin-top: var(--space-2);
+}
+
+.quick ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.quickLink {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.quickLink:hover {
+  border-color: var(--color-text);
+}
+
+.quickActive,
+.quickActive:hover {
+  border-color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+/* — Yerleşim — */
+.layout {
+  display: grid;
+  grid-template-columns: 276px minmax(0, 1fr);
+  gap: clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+  align-items: start;
+}
+
+/* — Filtre sidebar'ı (yuvarlak kart) — */
+.sidebar {
+  position: sticky;
+  top: calc(var(--stick-top) + 24px);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - var(--stick-top) - 48px);
+  padding: var(--space-5) var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  transition: top var(--dur-slow) var(--ease);
+}
+
+.sidebar .filters {
+  flex: 1;
+  min-height: 0;
+  padding-right: 2px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.sidebarHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0 var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.sidebarTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.sidebarIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+}
+
+.sidebarIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.clear {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.clear:hover {
+  background: var(--color-brand);
+}
+
+/* — Filtre grupları — */
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  --gx: var(--space-2);
+}
+
+.sidebar .group + .group {
+  border-top: 1px solid var(--color-line);
+}
+
+.group summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 60px;
+  padding-inline: var(--gx);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  cursor: pointer;
+  list-style: none;
+}
+
+.group summary::-webkit-details-marker {
+  display: none;
+}
+
+.group summary:focus-visible {
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+
+.group summary svg {
+  width: 28px;
+  height: 28px;
+  margin-left: auto;
+  padding: 7px;
+  border-radius: 50%;
+  background: var(--color-well);
+  color: var(--color-text);
+  transition:
+    transform var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.group summary:hover svg {
+  background: var(--color-brand-soft);
+}
+
+.group[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.groupTitle {
+  min-width: 0;
+}
+
+.groupCount {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 calc(var(--gx) - 8px) var(--space-4);
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.option:not(.optionDisabled):hover {
+  background: var(--color-well);
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+/* Yuvarlak onay kutusu */
+.box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  left: 5.5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-on-dark);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.option input:checked + .box {
+  background: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.option input:checked + .box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.option input:checked ~ .optionLabel {
+  font-weight: var(--fw-semibold);
+}
+
+.option input:focus-visible + .box,
+.option input:focus-visible ~ .switch {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.option:not(.optionDisabled):hover .box {
+  border-color: var(--color-text);
+}
+
+.optionLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.optionCount {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.optionDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Hap çip düzeni (tema, fiyat): kutu gizli, seçili = Graphite dolgu */
+.optionsChips {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-inline: var(--gx);
+}
+
+.optionsChips .option {
+  min-height: 38px;
+  padding: 0 8px 0 14px;
+  gap: 8px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-surface);
+}
+
+.optionsChips .option:not(.optionDisabled):hover {
+  border-color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.optionsChips .box {
+  display: none;
+}
+
+.optionsChips .optionLabel {
+  flex: none;
+}
+
+.optionsChips .optionCount {
+  min-width: 22px;
+}
+
+.optionsChips .option:has(input:checked),
+.optionsChips .option:has(input:checked):hover {
+  border-color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+.optionsChips .option:has(input:checked) .optionCount {
+  background: color-mix(in srgb, var(--color-on-dark) 18%, transparent);
+  color: var(--color-on-dark);
+}
+
+.optionsChips .option:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Durum anahtarları */
+.switchRow {
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  flex: none;
+  border-radius: var(--radius-full);
+  background: var(--color-line-strong);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--dur) var(--ease);
+}
+
+.option input:checked ~ .switch {
+  background: var(--color-text);
+}
+
+.option input:checked ~ .switch::after {
+  transform: translateX(16px);
+}
+
+/* — Araç çubuğu — */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  margin-bottom: var(--space-4);
+}
+
+.filterBtn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.filterBtn:hover {
+  background: var(--color-brand);
+  color: var(--color-text);
+}
+
+.filterBtn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.filterCount {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+}
+
+.filterBtn:hover .filterCount {
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+.sort {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+  font-size: var(--fs-sm);
+}
+
+.sortLabel {
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+}
+
+.sort select {
+  height: 44px;
+  padding: 0 44px 0 20px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.sort select:hover {
+  border-color: var(--color-text);
+}
+
+.sort select:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.sort > svg {
+  position: absolute;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+/* — Aktif filtre çipleri — */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+}
+
+.chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 6px 0 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-soft);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.chips button:hover {
+  background: var(--color-brand);
+}
+
+.chips svg {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.chips button:hover svg {
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+.chips .chipsClear {
+  padding: 0 16px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-surface);
+}
+
+.chips .chipsClear:hover {
+  border-color: var(--color-text);
+  background: var(--color-surface);
+}
+
+/* — Daha fazla — */
+.more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-12);
+  padding: var(--space-8) var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-align: center;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+}
+
+.progress {
+  width: min(260px, 100%);
+  height: 6px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  transition: width var(--dur-slow) var(--ease);
+}
+
+/* — Boş durum — */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: clamp(2.5rem, 2rem + 3vw, 4.5rem) var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin-bottom: var(--space-2);
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+}
+
+.emptyIcon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.emptyTitle {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.emptyText {
+  max-width: 44ch;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-secondary);
+}
+
+.suggest {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.suggest a {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.suggest a:hover {
+  border-color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+}
+
+/* — Mobil filtre çekmecesi — */
+.drawerBody {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+/* Çekmecede her filtre grubu ayrı bir bento kart */
+.drawerBody .filters {
+  gap: var(--space-3);
+}
+
+.drawerBody .group {
+  --gx: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.drawerFoot {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-3);
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .filterBtn {
+    display: inline-flex;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: var(--stick-top);
+    z-index: 5;
+    transition: top var(--dur-slow) var(--ease);
+    margin-inline: calc(var(--gutter) * -1);
+    margin-bottom: var(--space-3);
+    padding: 10px var(--gutter);
+    background: var(--color-bg);
+    box-shadow: 0 1px 0 var(--color-line);
+  }
+}
+
+@media (max-width: 639px) {
+  .head {
+    margin-bottom: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .desc {
+    font-size: var(--fs-body);
+  }
+
+  .toolbar {
+    gap: var(--space-2);
+  }
+
+  .sortLabel {
+    display: none;
+  }
+
+  .filterBtn,
+  .sort {
+    flex: 1;
+  }
+
+  .filterBtn {
+    justify-content: center;
+    padding: 0 14px;
+  }
+
+  .sort select {
+    width: 100%;
+  }
+
+  .more {
+    margin-top: var(--space-8);
+    padding: var(--space-6) var(--space-4);
+  }
+}

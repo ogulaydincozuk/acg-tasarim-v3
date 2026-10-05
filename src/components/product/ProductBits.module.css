@@ -1,0 +1,178 @@
+/* — Puan — */
+.rating {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  color: var(--color-text);
+}
+
+.ratingMd {
+  font-size: var(--fs-sm);
+}
+
+.star {
+  width: 13px;
+  height: 13px;
+  fill: var(--color-gold);
+  stroke: var(--color-gold);
+  flex: none;
+}
+
+.ratingMd .star {
+  width: 15px;
+  height: 15px;
+}
+
+.ratingValue {
+  font-weight: var(--fw-semibold);
+}
+
+.ratingCount {
+  color: var(--color-text-secondary);
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.starSlot {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.starSlot svg {
+  width: 16px;
+  height: 16px;
+}
+
+.starEmpty {
+  stroke: var(--color-line-strong);
+  fill: none;
+}
+
+.starFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+}
+
+.starFill .star {
+  width: 16px;
+  height: 16px;
+}
+
+/* — Fiyat — */
+.price {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
+  row-gap: 2px;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.price-sm {
+  font-size: var(--fs-sm);
+}
+
+.price-md {
+  font-size: 1.0625rem;
+}
+
+.price-lg {
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+  column-gap: var(--space-4);
+}
+
+.old {
+  font-size: 0.78em;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+  text-decoration-thickness: 1px;
+}
+
+.price-lg .old {
+  font-size: 0.55em;
+}
+
+.pct {
+  align-self: center;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
+}
+
+/* — Rozet: hap biçimli etiket — */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+.badge-yeni {
+  background: var(--color-brand-soft);
+}
+
+.badge-cok-satan {
+  background: var(--color-text);
+  color: var(--palette-white);
+}
+
+.badge-indirim {
+  background: var(--color-brand);
+}
+
+.badgeOut {
+  background: var(--color-well);
+  color: var(--color-text-secondary);
+}
+
+/* — Stok — */
+.stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text);
+}
+
+.stock-ok {
+  color: var(--color-text);
+}
+
+.stock-low .dot {
+  background: var(--color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 35%, transparent);
+}
+
+.stock-out .dot {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-text-muted);
+}

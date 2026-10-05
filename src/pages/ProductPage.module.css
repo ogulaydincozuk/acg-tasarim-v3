@@ -1,0 +1,405 @@
+.page {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-section);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 0.5rem + 3vw, 3rem);
+  align-items: start;
+  margin-top: var(--space-5);
+}
+
+/* — Bilgi kolonu: yapışkan, yuvarlak beyaz kart — */
+.info {
+  position: sticky;
+  top: calc(var(--stick-top) + 24px);
+  transition: top var(--dur-slow) var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: clamp(1.25rem, 0.8rem + 1.6vw, 2rem);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.info > * {
+  min-width: 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Alt kategori: küçük hap etiket */
+.sub {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+}
+
+.title {
+  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--fs-sm);
+}
+
+.ratingBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-well);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.ratingBtn:hover {
+  background: var(--color-brand-soft);
+}
+
+.ratingBtn:focus-visible {
+  border-radius: var(--radius-full);
+}
+
+.ratingValue {
+  font-weight: var(--fw-bold);
+}
+
+.ratingCount {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-xs);
+}
+
+.sku {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Fiyat: açık blush bento karosu */
+.priceBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-tint);
+  font-variant-numeric: tabular-nums;
+}
+
+.vat {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+}
+
+.desc {
+  max-width: 54ch;
+  color: var(--color-text-secondary);
+}
+
+/* Hızlı bilgiler: yumuşak mini karolar */
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 14px var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-well);
+}
+
+.facts > div:first-child:nth-last-child(2),
+.factWide {
+  grid-column: 1 / -1;
+}
+
+.facts dt {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.usageChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.usageChips a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.usageChips a:hover {
+  background: var(--color-text);
+  color: var(--color-surface);
+}
+
+.usageChips a:focus-visible {
+  border-radius: var(--radius-full);
+}
+
+.contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-wash);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.contents li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contents svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+  stroke-width: 3;
+}
+
+/* Satın alma: hap adımlayıcı + geniş birincil buton + dairesel favori */
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.buy > :global(.btn) {
+  flex: 1 1 150px;
+  padding-inline: var(--space-5);
+}
+
+.fav {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.fav:hover {
+  border-color: var(--color-text);
+  background: var(--color-brand-tint);
+}
+
+.fav:active {
+  transform: scale(0.94);
+}
+
+.fav:focus-visible {
+  border-radius: 50%;
+}
+
+.fav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.favActive {
+  border-color: transparent;
+  background: var(--color-brand-soft);
+}
+
+.favActive svg {
+  fill: var(--color-brand);
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-well);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+}
+
+.service li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.service svg {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  padding: 7px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* — Alt bölümler — */
+.details {
+  margin-top: clamp(2.5rem, 1.5rem + 3.5vw, 5rem);
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.details > div {
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.block {
+  margin-top: var(--space-section);
+}
+
+/* — Mobil yapışkan bar: yuvarlak üst köşeler, hap buton — */
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: calc(var(--z-header) - 2);
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 12px var(--space-4) calc(12px + env(safe-area-inset-bottom));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-surface);
+  box-shadow:
+    0 -1px 0 var(--color-line),
+    0 -16px 36px -18px rgb(41 40 39 / 0.28);
+  transform: translateY(110%);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.barOn {
+  transform: none;
+}
+
+.barImg {
+  width: 48px;
+  flex: none;
+  border-radius: var(--radius-sm);
+}
+
+.barText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+}
+
+.barName {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1023px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .info {
+    position: static;
+  }
+
+  .bar {
+    display: flex;
+  }
+}
+
+@media (max-width: 639px) {
+  .top {
+    margin-top: var(--space-4);
+  }
+
+  .info {
+    gap: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .contents {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dar ekranda: adımlayıcı + favori üstte, geniş buton altta */
+  .buy > div {
+    flex: 1;
+  }
+
+  .buy > div ~ :global(.btn) {
+    order: 3;
+    flex-basis: 100%;
+  }
+}

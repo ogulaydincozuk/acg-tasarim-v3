@@ -1,0 +1,75 @@
+.root {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 680px;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.desc {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-body);
+  max-width: 48ch;
+}
+
+.action {
+  flex: none;
+}
+
+.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.center .text {
+  align-items: center;
+}
+
+.dark .title {
+  color: var(--color-on-dark);
+}
+
+.dark .desc {
+  color: var(--color-on-dark-muted);
+}
+
+@media (max-width: 639px) {
+  .root {
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* dar ekranda yalnızca dairesel ok kalır */
+  .action {
+    font-size: 0;
+    gap: 0;
+    padding: 0;
+    border: 0;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .action svg {
+    width: 38px;
+    height: 38px;
+    padding: 10px;
+  }
+
+  .center {
+    flex-direction: column;
+    align-items: center;
+  }
+}
